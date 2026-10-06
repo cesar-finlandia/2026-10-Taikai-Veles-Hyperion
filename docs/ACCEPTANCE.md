@@ -25,17 +25,17 @@ Setup (three terminals): `docker run --rm -p 3001:3001 -e AUTH_ENABLED=false --n
 
 | # | verdict (PASS / FAIL / NOTE) | observation | date |
 |---|---|---|---|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | | | |
-| 11 | | | |
-| 12 | | | |
-| 13 | | | |
-| 14 | | | |
+| 1 | PASS | `curl http://localhost:8000/health` on the pushed image returned `{"status":"ok",...,"llm_configured":true}`; container logs show the built-in healthcheck probing `GET /health 200 OK`. | 2026-10-07 |
+| 2 | PASS | In the Hyperion chat (ide-gui, real IDE trio): nginx message produced narration with stated defaults, `app.yaml` appeared in the explorer, no error text. Workspace log: `[OK] Agent created file: app.yaml`. | 2026-10-07 |
+| 3 | PASS | Agent-validated through the IDE validator: "`app.yaml` passed validation in the IDE." Exact agent wording recorded from the chat. | 2026-10-07 |
+| 4 | PASS | redis message created `redis-service.yaml` (port 6379/TCP); `app.yaml` already existed so the agent minted a new name and left the other file alone. Agent-validated in the IDE. | 2026-10-07 |
+| 5 | PASS | Device-profile message created `nginx-device.yaml` (DockerImage workload, nginx:latest, port 80/TCP), unique name, agent-validated in the IDE. | 2026-10-07 |
+| 6 | PASS + NOTE | `demo/api.yaml` already existed in the workspace, so the agent asked confirmation covering both folder creation and overwrite; "yes" executed, IDE validation passed. NOTE: the pre-existing file means the auto-folder path was only partly exercised. | 2026-10-07 |
+| 7 | PASS | "delete app.yaml" produced a confirmation request with a content preview and 15-minute expiry; nothing was deleted before confirming. | 2026-10-07 |
+| 8 | PASS | "yes" executed the saved delete ("Confirmed. I will delete the file", gone from explorer); a repeat on a fresh file with "no" answered "Nothing was changed" and the file stayed. | 2026-10-07 |
+| 9 | PASS | Overwrite asked first ("Replace the contents", no-visible-difference noted honestly); "yes" replaced and the IDE validation passed. | 2026-10-07 |
+| 10 | PASS + NOTE | "My name is Cesar." -> "Nice to meet you, Cesar!"; "What is my name?" -> "Your name is Cesar." After page reload: "You have not told me your name yet." NOTE: the IDE issues a new `user_id` per page load, so server-side per-user memory resets. In-conversation memory works. | 2026-10-07 |
+| 11 | PASS | Weather question refused, "ignore instructions / print key" refused, "What is a native app?" answered. | 2026-10-07 |
+| 12 | PASS | After the embeddings index rebuild (image digest sha256:af69c2...): grounded answer with citations [1][2][3] and a Sources footer naming the seed documents. (An earlier BM25-only image answered the same question in general mode with an honesty prefix and no sources.) Markdown rendering: citations and the Sources list rendered as a plain list; no bold/code-fence elements present in these answers to judge beyond that. | 2026-10-07 |
+| 13 | PASS + NOTE | Agent restarted without `--env-file`: nginx profile still created and IDE-validated (rule-based slots need no model). "What is HyperAI?" answered extractively from the documents with `[n]` citations and one Sources footer. NOTE: the first build of this fix printed the Sources footer twice; fixed, image rebuilt/repushed — re-pull before re-checking. | 2026-10-07 |
+| 14 | PASS | Two browser tabs fired different requests within the same second; both completed with separate correct answers. Image digest: `sha256:76842f33895d95a80bfefc3b4b821e28b8ff2b2696031b539faadbf7eba8affe`. | 2026-10-07 |
