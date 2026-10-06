@@ -76,8 +76,17 @@ async def test_not_confident_uses_general_answer_with_llm():
 
 async def test_not_confident_without_llm_abstains():
     ae = make_agent_env()
-    text, _turn = await _texts(ae, "How does a reverse proxy cache work?")
+    text, _turn = await _texts(ae, "What is the HyperAI mascot favorite color?")
     assert text.startswith(ABSTAIN_PHRASE)
+
+
+async def test_not_confident_without_llm_extracts_when_supported():
+    ae = make_agent_env()
+    text, turn = await _texts(ae, "How does a reverse proxy cache work?")
+    assert not text.startswith(ABSTAIN_PHRASE)
+    assert "[" in text and "]" in text
+    recs = _records(turn, "ask")
+    assert recs and recs[0].detail.get("mode") == "extractive"
 
 
 async def test_index_missing_uses_builtin_overview():

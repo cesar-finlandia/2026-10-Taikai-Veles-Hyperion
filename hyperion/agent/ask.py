@@ -36,6 +36,7 @@ class AskFlow:
         # 2. Retrieve.
         hits: list = []
         confident = False
+        support = 0.0
         notice = ""
         if not self._settings.feature_rag:
             hits = []
@@ -55,6 +56,7 @@ class AskFlow:
             else:
                 hits = result.hits
                 confident = result.confident and bool(hits)
+                support = result.support
                 notice = ""
         else:
             hits = select_builtin_hits(text)
@@ -145,9 +147,26 @@ class AskFlow:
                 if isinstance(exc, (KeyboardInterrupt, SystemExit, GeneratorExit)):
                     raise
                 if not started:
-                    yield TextEvent(ABSTAIN_PHRASE + " " + ASK_ABSTAIN_HINT)
-                    mode = "abstain"
-                    used_llm = False
+                    # No model: quote the documents when they cover the question,
+                    # otherwise abstain (degraded-mode matrix, blueprint §2.5).
+                    fallback = ""
+                    if hits and support >= self._settings.rag_lexical_min:
+                        try:
+                            fallback = extractive_answer(text, hits)
+                        except Exception:
+                            fallback = ""
+                    if fallback:
+                        try:
+                            footer = sources_footer(hits, fallback)
+                        except Exception:
+                            footer = ""
+                        yield TextEvent(fallback + (footer or ""))
+                        mode = "extractive"
+                        used_llm = False
+                    else:
+                        yield TextEvent(ABSTAIN_PHRASE + " " + ASK_ABSTAIN_HINT)
+                        mode = "abstain"
+                        used_llm = False
                 else:
                     yield TextEvent(ASK_INCOMPLETE)
                     mode = "general"
