@@ -156,11 +156,7 @@ class AskFlow:
                         except Exception:
                             fallback = ""
                     if fallback:
-                        try:
-                            footer = sources_footer(hits, fallback)
-                        except Exception:
-                            footer = ""
-                        yield TextEvent(fallback + (footer or ""))
+                        yield TextEvent(fallback)
                         mode = "extractive"
                         used_llm = False
                     else:
