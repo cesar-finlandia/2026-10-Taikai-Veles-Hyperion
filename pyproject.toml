@@ -7,7 +7,23 @@ requires-python = ">=3.14"
 dependencies = [
     "fastapi>=0.115",
     "httpx>=0.28.1",
-    "langchain-openai>=1.6.1",
+    "openai>=1.0",
+    "pydantic>=2.0",
     "python-dotenv>=1.2.3",
+    "pyyaml>=6.0",
     "uvicorn>=0.34",
 ]
+
+[dependency-groups]
+dev = [
+    "pypdf>=6.19.0",
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "python-docx>=1.2.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = ["live: needs a real LLM key (skipped when API_KEY is empty)"]

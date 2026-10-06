@@ -1,6 +1,7 @@
 services:
   hyperion:
     build: .
+    image: hyperion:local
     env_file: .env
     ports:
       - "8000:8000"

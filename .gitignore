@@ -1,10 +1,38 @@
-# Python-generated files
-__pycache__/
-*.py[oc]
-build/
-dist/
-wheels/
-*.egg-info
+# secrets and local notes
+.env
+.env.*
+!.env.example
+.env.local-notes
 
-# Virtual environments
-.venv
+# tooling and caches
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.log
+
+# assistant and pipeline directories are never published
+hee/
+.claude/
+design_documents/
+
+# organizer documents are not redistributed; only the derived index in data/ ships
+corpus/drive/*
+!corpus/drive/.gitkeep
+
+# local scratch files
+.c1pg-*
+
+# evaluation output: only the generated scorecards are committed
+evals/results/*
+!evals/results/.gitkeep
+!evals/results/live/
+!evals/results/offline/
+evals/results/live/*
+evals/results/offline/*
+!evals/results/live/scorecard.json
+!evals/results/live/scorecard.md
+!evals/results/offline/scorecard.json
+!evals/results/offline/scorecard.md

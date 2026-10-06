@@ -1,0 +1,24 @@
+{"id": "a01", "text": "Create a deployment YAML for a service using the nginx Docker image", "kind": "native", "expect_image": "nginx", "expect_port": null}
+{"id": "a02", "text": "I need a yaml to run nginx", "kind": "native", "expect_image": "nginx", "expect_port": null}
+{"id": "a03", "text": "Make a profile for an nginx web server on port 8080", "kind": "native", "expect_image": "nginx", "expect_port": 8080}
+{"id": "a04", "text": "Generate an application profile for redis", "kind": "native", "expect_image": "redis", "expect_port": 6379}
+{"id": "a05", "text": "Write a deployment yaml for postgres", "kind": "native", "expect_image": "postgres", "expect_port": 5432}
+{"id": "a06", "text": "deploy grafana as a native app", "kind": "native", "expect_image": "grafana", "expect_port": 3000}
+{"id": "a07", "text": "Create a native app profile for a python service called data-api on port 8000", "kind": "native", "expect_image": "python", "expect_port": 8000}
+{"id": "a08", "text": "I want a deployment yaml for httpd with 1000m cpu and 1Gi memory", "kind": "native", "expect_image": "httpd", "expect_port": null}
+{"id": "a09", "text": "Create web.yaml for nginx for production", "kind": "native", "expect_image": "nginx", "expect_port": null}
+{"id": "a10", "text": "Please generate a yaml profile using the traefik image", "kind": "native", "expect_image": "traefik", "expect_port": null}
+{"id": "a11", "text": "make me a deployment file for mosquitto", "kind": "native", "expect_image": "mosquitto", "expect_port": 1883}
+{"id": "a12", "text": "Create a deployment YAML for a node service on port 3000", "kind": "native", "expect_image": "node", "expect_port": 3000}
+{"id": "a13", "text": "Build a profile for prometheus owned by monitoring-team", "kind": "native", "expect_image": "prometheus", "expect_port": 9090}
+{"id": "a14", "text": "set up a yaml for mysql in the testing lifecycle", "kind": "native", "expect_image": "mysql", "expect_port": 3306}
+{"id": "a15", "text": "Create a deployment YAML for nginx version 2.0.0", "kind": "native", "expect_image": "nginx", "expect_port": null}
+{"id": "a16", "text": "Create a yaml for the nginx:1.27 image exposing port 8081", "kind": "native", "expect_image": "nginx", "expect_port": 8081}
+{"id": "a17", "text": "Create a device app profile for nginx", "kind": "device", "expect_image": "nginx", "expect_port": null}
+{"id": "a18", "text": "Make a device application manifest that runs grafana on my raspberry pi", "kind": "device", "expect_image": "grafana", "expect_port": 3000}
+{"id": "a19", "text": "Generate a device app for the redis docker image", "kind": "device", "expect_image": "redis", "expect_port": 6379}
+{"id": "a20", "text": "Write an Android device app profile for com.example.camera", "kind": "device", "expect_image": "com.example.camera", "expect_port": null}
+{"id": "a21", "text": "Create an esp32 device app profile that flashes firmware over the air", "kind": "device", "expect_image": "esp32", "expect_port": null}
+{"id": "a22", "text": "yaml for a minio object store, native app", "kind": "native", "expect_image": "minio", "expect_port": 9000}
+{"id": "a23", "text": "Could you put together a deployment YAML for rabbitmq?", "kind": "native", "expect_image": "rabbitmq", "expect_port": 5672}
+{"id": "a24", "text": "Create a deployment YAML for a wordpress site", "kind": "native", "expect_image": "wordpress", "expect_port": 80}
