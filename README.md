@@ -147,6 +147,10 @@ The organizers' starter provided a FastAPI service with a `/chat` stub, `helpers
 
 AI assistants were used to plan and to write this project under the author's direction. The details, including what the author decided and how the output was checked, are in [disclosure.md](disclosure.md). At run time the service uses only the organizers' legion1 server (Llama 3.1 8B and `nomic-embed-text`) or a local OpenAI-compatible server.
 
+### AI use
+
+The demo video's narration, music and background pictures were produced with AI tools. The screen recording of the product is real and unedited.
+
 ## Data and credits
 
 The search index is derived from the organizers' HYPER-AI documentation and the HyperAI IDE tutorial pages; they remain the property of their authors and are credited here as data sources. The raw Drive documents are not redistributed in this repository. Hosting of the model: the Veles Hack organizers.
